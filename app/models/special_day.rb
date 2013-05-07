@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: special_days
+#
+#  id          :integer          not null, primary key
+#  calendar_id :integer
+#  day_type_id :integer
+#  date        :date
+#  description :string(255)
+#
+
 class SpecialDay < ActiveRecord::Base
   unloadable
 

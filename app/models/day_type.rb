@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: day_types
+#
+#  id       :integer          not null, primary key
+#  name     :string(255)
+#  duration :integer          default(0)
+#  color    :string(255)
+#
+
 class DayType < ActiveRecord::Base
   unloadable
 

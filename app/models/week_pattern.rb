@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: week_patterns
+#
+#  id   :integer          not null, primary key
+#  name :string(255)
+#  days :text
+#
+
 class WeekPattern < ActiveRecord::Base
   unloadable
 
