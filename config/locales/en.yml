@@ -3,3 +3,4 @@ en:
   redmine_special_days:
     menu_title: Special days
     calendars: Calendars
+    calendar_overview: Overview
