@@ -1,0 +1,62 @@
+.pretty_calendar {
+  margin: auto;
+}
+
+.month-name th {
+  font-weight: normal;
+  text-align: right;
+  padding-top: 1em;
+  padding-bottom: 0.7em;
+}
+
+.day-names th {
+  font-size: 0.7em;
+  padding-top: 0.6em;
+  padding-bottom: 0.3em;
+  background-color: #303030;
+  color: white;
+}
+
+.day {
+  padding: 0.7em 1em;
+  border-right: 1px solid #F2F2F2;
+  text-align: center;
+}
+
+.weekend {
+  background-color: #FFFFDD;
+}
+
+.not-in-month {
+  color: #AAAAAA;
+  background-color: #F2F2F2;
+}
+
+/*
+.day, .specialDay {
+  text-align: center;
+  border-bottom: 1px dotted #bbbbbb;
+  background-color: #bbccff;
+}
+.specialDay {
+  background-color: #003355;
+  color: white;
+}
+.specialDay a:visited, .specialDay a{
+ color: #8B0000;
+ text-decoration: none;
+}
+.specialDay a:hover {
+  color: white;
+  text-decoration: none;
+  background-color: #00300;
+}
+
+.specialDay a:hover {
+  color: white;
+  background-color: black;
+}
+.today{
+  background-color: #4682b4;
+}
+*/

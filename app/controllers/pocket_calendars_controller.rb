@@ -6,5 +6,7 @@ class PocketCalendarsController < ApplicationController
   end
 
   def show
+    @pocket_calendar = PocketCalendar.find(params[:id])
   end
+
 end

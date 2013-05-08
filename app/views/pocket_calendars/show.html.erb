@@ -1,3 +1,7 @@
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'redmine_special_days', :plugin => 'redmine_special_days' %>
+<% end %>
+
 <h2><%= l('redmine_special_days.calendar_overview') %></h2>
 
 <div class="splitcontentleft">
@@ -5,5 +9,5 @@
 </div>
 
 <div class="splitcontentright">
-  <div class="issues box">Pretty current month</div>
+  <div class="issues box"><%= pretty_calendar @pocket_calendar, Date.today.year, Date.today.month %></div>
 </div>
