@@ -9,5 +9,9 @@
 </div>
 
 <div class="splitcontentright">
-  <div class="issues box"><%= pretty_calendar @pocket_calendar, Date.today.year, Date.today.month %></div>
+  <div class="issues box">
+    <%= render 'pretty_calendar_month', :calendar => @pocket_calendar,
+                                        :year => Date.today.year,
+                                        :month => Date.today.month %>
+  </div>
 </div>

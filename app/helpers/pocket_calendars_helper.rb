@@ -20,7 +20,9 @@ module PocketCalendarsHelper
   def pretty_calendar(calendar, year, month, options={})
     defaults = { :first_day_of_week => 1,
                  :edit => false,
-                 :show_today => true }
+                 :show_today => true,
+                 :nav_links => true,
+                 :div_id => 'calendar-show' }
     options = defaults.merge options
 
     first_day = Date.civil(year, month, 1)
@@ -29,15 +31,27 @@ module PocketCalendarsHelper
     start_day = first_day.beginning_of_week # monday
     end_day   = last_day.end_of_week # sunday
 
+    next_month = first_day.next_month
+    prev_month = first_day.prev_month
+
+    needs_nav = options[:nav_links] && options[:div_id]
+    next_month_link = calendar_link('>>', calendar, next_month.year, next_month.month, options[:div_id])
+    prev_month_link = calendar_link('<<', calendar, prev_month.year, prev_month.month, options[:div_id])
+
+    title_colspan = options[:nav_links] ? 5 : 7
+
     day_names  = I18n.t('date.day_names').rotate.zip(I18n.t('date.abbr_day_names').rotate) # monday first
 
     pretty_cal = ""
 
-    pretty_cal  << %(<table class="pretty_calendar" border="0" cellspacing="0" cellpadding="0">)
+    pretty_cal << %(<div id=#{options[:div_id]}>) if options[:div_id]
 
+    pretty_cal  << %(<table class="pretty_calendar" border="0" cellspacing="0" cellpadding="0">)
     pretty_cal    << %(<thead>)
     pretty_cal      << %(<tr>)
-    pretty_cal        << %(<th colspan="7" class="month-name">#{I18n.t('date.month_names')[month]}</th>)
+    pretty_cal        << %(<th colspan="1">#{prev_month_link}</th>) if needs_nav
+    pretty_cal        << %(<th colspan="#{title_colspan}" class="month-name">#{year} #{I18n.t('date.month_names')[month]}</th>)
+    pretty_cal        << %(<th colspan="1">#{next_month_link}</th>) if needs_nav
     pretty_cal      << %(<tr>)
     pretty_cal      << %(<tr class="day-names">)
     day_names.each do |dname, abbr_dname|
@@ -58,6 +72,8 @@ module PocketCalendarsHelper
     pretty_cal    << %(</tbody>)
     pretty_cal << %(</table>)
 
+    pretty_cal << %(</div>) if options[:div_id]
+
     pretty_cal.html_safe
   end
 
@@ -75,6 +91,17 @@ module PocketCalendarsHelper
     pretty_day << %(</td>)
 
     pretty_day.html_safe
+  end
+
+  def calendar_link(text, calendar, year, month, div_id)
+    link_to(text,
+            Rails.application.routes.url_helpers.change_month_pocket_calendars_path(
+              :calendar_id => calendar.id,
+              :year => year,
+              :month => month,
+              :div_id => div_id),
+            :remote => true,
+            :method => :put).html_safe
   end
 
 end

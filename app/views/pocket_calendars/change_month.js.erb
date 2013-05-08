@@ -1,0 +1,5 @@
+$('#<%= @div_id %>').html('<%= escape_javascript(render "pretty_calendar_month",
+                                                        :calendar => @calendar,
+                                                        :year => @year,
+                                                        :month => @month,
+                                                        :options => { :div_id => @div_id })%>')
