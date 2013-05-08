@@ -50,13 +50,8 @@ module PocketCalendarsHelper
       calendar.interval(start_day, end_day).to_a.each_slice(7) do |week|
         pretty_cal  << %(<tr>)
           week.each do |date, info|
-            klass = "day"
-            color = info[:color]
-            if (date.to_date < first_day || date.to_date > last_day)
-              klass << " not-in-month"
-              color = nil
-            end
-            pretty_cal  << %(<td class="#{klass}" style="background-color: #{color}" title="#{info[:description]}">#{date.to_date.day}</td>)
+            date = date.to_date
+            pretty_cal << pretty_day(date, info, (date < first_day || date > last_day))
           end
         pretty_cal  << %(</tr>)
       end
@@ -64,4 +59,21 @@ module PocketCalendarsHelper
 
     pretty_cal.html_safe
   end
+
+  def pretty_day(date, info, not_in_month=false)
+    pretty_day = ""
+    pretty_day << %(<td )
+      pretty_day << %(class = ")
+        pretty_day << %(day)
+        pretty_day << %( not-in-month) if not_in_month
+      pretty_day << %(")
+      pretty_day << %( style="background-color: #{info[:color]}") unless not_in_month
+      pretty_day << %( title="#{info[:description]}") if info[:description]
+    pretty_day << %(>)
+      pretty_day << date.day.to_s
+    pretty_day << %(</td>)
+
+    pretty_day.html_safe
+  end
+
 end
