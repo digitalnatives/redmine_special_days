@@ -1,6 +1,22 @@
 require 'date'
 
 module PocketCalendarsHelper
+  def special_days_overview(calendar)
+    overview = ""
+    overview      << %(<ul>)
+      calendar.special_days_grouped_by_year.each do |year, days|
+        overview    << %(<li>#{year}</li>)
+        overview      << %(<ul>)
+          days.each do |day|
+            overview    << %(<li>#{I18n.l day.date} : #{day.description}</li>)
+          end
+        overview      << %(</ul>)
+      end
+    overview      << %(</ul>)
+
+    overview.html_safe
+  end
+
   def pretty_calendar(calendar, year, month, options={})
     defaults = { :first_day_of_week => 1,
                  :edit => false,
