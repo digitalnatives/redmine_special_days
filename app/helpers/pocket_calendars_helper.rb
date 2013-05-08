@@ -45,7 +45,7 @@ module PocketCalendarsHelper
 
     pretty_cal = ""
 
-    pretty_cal << %(<div id=#{options[:div_id]}>) if options[:div_id]
+    pretty_cal << %(<div id="#{options[:div_id]}">) if options[:div_id]
 
     pretty_cal  << %(<table class="pretty_calendar" border="0" cellspacing="0" cellpadding="0">)
     pretty_cal    << %(<thead>)
@@ -72,7 +72,7 @@ module PocketCalendarsHelper
       end
     pretty_cal    << %(</tbody>)
 
-    pretty_cal    << %(<thead><tr class="cal-footer"><th colspan='7'>#{current_month_link}</th>"</tr></thead>) if needs_nav
+    pretty_cal    << %(<thead><tr class="cal-footer"><th colspan="7">#{current_month_link}</th></tr></thead>) if needs_nav
 
     pretty_cal << %(</table>)
 
