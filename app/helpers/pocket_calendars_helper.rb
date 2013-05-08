@@ -56,6 +56,7 @@ module PocketCalendarsHelper
         pretty_cal  << %(</tr>)
       end
     pretty_cal    << %(</tbody>)
+    pretty_cal << %(</table>)
 
     pretty_cal.html_safe
   end
