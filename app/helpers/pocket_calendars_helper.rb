@@ -35,8 +35,8 @@ module PocketCalendarsHelper
     prev_month = first_day.prev_month
 
     needs_nav = options[:nav_links] && options[:div_id]
-    next_month_link = calendar_link('>>', calendar, next_month.year, next_month.month, options[:div_id])
-    prev_month_link = calendar_link('<<', calendar, prev_month.year, prev_month.month, options[:div_id])
+    next_month_link = month_change_link('>>', calendar, next_month.year, next_month.month, options[:div_id])
+    prev_month_link = month_change_link('<<', calendar, prev_month.year, prev_month.month, options[:div_id])
 
     title_colspan = options[:nav_links] ? 5 : 7
 
@@ -93,7 +93,7 @@ module PocketCalendarsHelper
     pretty_day.html_safe
   end
 
-  def calendar_link(text, calendar, year, month, div_id)
+  def month_change_link(text, calendar, year, month, div_id)
     link_to(text,
             Rails.application.routes.url_helpers.change_month_pocket_calendars_path(
               :calendar_id => calendar.id,
