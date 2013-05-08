@@ -17,6 +17,30 @@
   color: white;
 }
 
+.cal-footer th {
+  font-size: 0.9em;
+  padding-top: 0.3em;
+  padding-bottom: 0.6em;
+  background-color: #303030;
+}
+
+.cal-footer th a {
+  color: white;
+}
+
+.cal-footer th a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.cal-footer th a:hover:before {
+  content: '<<';
+}
+
+.cal-footer th a:hover:after {
+  content: '>>';
+}
+
 .day {
   padding: 0.7em 1em;
   border-right: 1px solid #F2F2F2;

@@ -35,8 +35,9 @@ module PocketCalendarsHelper
     prev_month = first_day.prev_month
 
     needs_nav = options[:nav_links] && options[:div_id]
-    next_month_link = month_change_link('>>', calendar, next_month.year, next_month.month, options[:div_id])
-    prev_month_link = month_change_link('<<', calendar, prev_month.year, prev_month.month, options[:div_id])
+    next_month_link     = month_change_link('>>', calendar, next_month.year, next_month.month, options[:div_id])
+    prev_month_link     = month_change_link('<<', calendar, prev_month.year, prev_month.month, options[:div_id])
+    current_month_link  = month_change_link(I18n.t('redmine_special_days.current_month'), calendar, Date.today.year, Date.today.month, options[:div_id])
 
     title_colspan = options[:nav_links] ? 5 : 7
 
@@ -70,6 +71,9 @@ module PocketCalendarsHelper
         pretty_cal  << %(</tr>)
       end
     pretty_cal    << %(</tbody>)
+
+    pretty_cal    << %(<thead><tr class="cal-footer"><th colspan='7'>#{current_month_link}</th>"</tr></thead>) if needs_nav
+
     pretty_cal << %(</table>)
 
     pretty_cal << %(</div>) if options[:div_id]
