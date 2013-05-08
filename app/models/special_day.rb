@@ -15,4 +15,8 @@ class SpecialDay < ActiveRecord::Base
   belongs_to :pocket_calendar
   belongs_to :day_type
 
+  def to_hash
+    day_type.to_hash.merge :description => description
+  end
+
 end

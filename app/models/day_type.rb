@@ -13,4 +13,8 @@ class DayType < ActiveRecord::Base
 
   has_many :special_days
 
+  def to_hash
+    { :name => name, :duration => duration, :color => color }
+  end
+
 end
