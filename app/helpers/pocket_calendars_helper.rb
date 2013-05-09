@@ -22,7 +22,8 @@ module PocketCalendarsHelper
                  :edit => false,
                  :show_today => true,
                  :nav_links => true,
-                 :div_id => 'calendar-show' }
+                 :div_id => 'calendar-show',
+                 :show_year => true }
     options = defaults.merge options
 
     first_day = Date.civil(year, month, 1)
@@ -40,6 +41,7 @@ module PocketCalendarsHelper
     current_month_link  = month_change_link(I18n.t('redmine_special_days.current_month'), calendar, Date.today.year, Date.today.month, options[:div_id])
 
     title_colspan = options[:nav_links] ? 5 : 7
+    title = options[:show_year] ? "#{year} #{I18n.t('date.month_names')[month]}" : I18n.t('date.month_names')[month]
 
     day_names  = I18n.t('date.day_names').rotate.zip(I18n.t('date.abbr_day_names').rotate) # monday first
 
