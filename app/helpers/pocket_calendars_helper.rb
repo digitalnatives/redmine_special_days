@@ -123,6 +123,9 @@ module PocketCalendarsHelper
   end
 
   def calendar_day(date, info, not_in_month=false)
+    title = info[:name]
+    title << " # #{info[:description]}" unless info[:description].blank?
+
     pretty_day = ""
     pretty_day << %(<td )
       pretty_day << %(class = ")
@@ -130,7 +133,7 @@ module PocketCalendarsHelper
         pretty_day << %( not-in-month) if not_in_month
       pretty_day << %(")
       pretty_day << %( style="background-color: #{info[:color]}") unless not_in_month
-      pretty_day << %( title="#{info[:description]}") if info[:description]
+      pretty_day << %( title="#{title}") unless not_in_month
     pretty_day << %(>)
       pretty_day << date.day.to_s
     pretty_day << %(</td>)
