@@ -101,7 +101,7 @@ module PocketCalendarsHelper
     prev_year_link  = month_change_link('<<<', calendar, prev_year.year, prev_year.month,
                                         div_id, I18n.t('redmine_special_days.prev_year'))
 
-    title_row  = %(<tr>)
+    title_row  = %(<tr class="title-row">)
     title_row   << %(<th colspan="1">#{prev_year_link}</th>) if needs_nav
     title_row   << %(<th colspan="1">#{prev_month_link}</th>) if needs_nav
     title_row   << %(<th colspan="#{title_colspan}" class="month-name">#{title}</th>)

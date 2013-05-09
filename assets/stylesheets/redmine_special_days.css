@@ -28,6 +28,10 @@
   color: white;
 }
 
+.title-row a:hover {
+  text-decoration: none;
+}
+
 .cal-footer th a:hover {
   text-decoration: none;
   color: white;
