@@ -1,3 +1,12 @@
+<%= content_for :sidebar do %>
+  <h3><%= link_to l('redmine_special_days.day_types'),     day_types_path,     :class => 'icon icon-stats' %></h1>
+  <h3><%= link_to l('redmine_special_days.week_patterns'), week_patterns_path, :class => 'icon icon-stats' %></h1>
+<% end %>
+
+<div class="contextual">
+  <%= link_to l('redmine_special_days.new_calendar'), {:action => 'new'}, :class => 'icon icon-add' %>
+</div>
+
 <h2><%= l('redmine_special_days.calendars') %></h2>
 
 <div class="list_calendar">

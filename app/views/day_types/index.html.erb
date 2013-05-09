@@ -1,0 +1,32 @@
+<div class="contextual">
+  <%= link_to l('redmine_special_days.new_day_type'), {:action => 'new'}, :class => 'icon icon-add' %>
+</div>
+
+<h2><%= l('redmine_special_days.day_types') %></h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th><%= l('redmine_special_days.day_type.name')%></th>
+        <th><%= l('redmine_special_days.day_type.color')%></th>
+        <th><%= l('redmine_special_days.day_type.duration')%></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @day_types.each do |day_type| %>
+        <tr class="<%= cycle('odd', 'even') %>">
+          <td width="200px"align="left"><%= day_type.name %></td>
+          <td width="80px" align="center"><div style="background: <%= day_type.color %>">&nbsp;</div></td>
+          <td width="80px" align="center"> <%= day_type.duration %> <%= l('redmine_special_days.hours') %></td>
+          <td width="150px" align="right">
+            <%= link_to l('button_edit'), edit_day_type_path(day_type), :class => 'icon icon-edit' %>
+            &nbsp;&nbsp;&nbsp;
+            <%= link_to l('button_delete'), day_type_path(day_type), :class => 'icon icon-delete',
+                                          :method => :delete,
+                                          :confirm => l(:text_are_you_sure) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

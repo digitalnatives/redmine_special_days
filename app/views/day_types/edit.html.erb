@@ -1,0 +1,6 @@
+<h2><%= l('redmine_special_days.edit_day_type') %></h2>
+
+<%= labelled_form_for @day_type do |f| %>
+  <%= render 'form', :f => f %>
+  <%= submit_tag l(:button_update) %>
+<% end %>

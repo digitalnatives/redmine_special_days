@@ -9,3 +9,14 @@ en:
     prev_month: previous month
     next_year: next year
     prev_year: previous year
+    new_calendar: New calendar
+    new_day_type: New day type
+    edit_day_type: Edit day type
+    new_week_pattern: New week pattern
+    week_patterns: Week patterns
+    day_types: Day types
+    hours: hours
+    day_type:
+      name: name
+      color: color
+      duration: duration
