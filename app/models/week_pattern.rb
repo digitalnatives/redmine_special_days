@@ -14,4 +14,8 @@ class WeekPattern < ActiveRecord::Base
 
   has_many :pocket_calendars
 
+  validates_presence_of :name, :days
+
+  # TODO : smart validation on days (existing day_types, all days filled, etc.)
+
 end

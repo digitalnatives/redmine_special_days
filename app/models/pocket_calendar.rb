@@ -13,6 +13,9 @@ class PocketCalendar < ActiveRecord::Base
   belongs_to :week_pattern
   has_many :special_days
 
+  validates_presence_of   :name, :week_pattern_id
+  validates_uniqueness_of :name
+
   def day_types
     @day_types ||= compute_day_types
   end

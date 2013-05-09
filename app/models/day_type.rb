@@ -13,6 +13,9 @@ class DayType < ActiveRecord::Base
 
   has_many :special_days
 
+  validates_presence_of   :name, :color
+  validates_uniqueness_of :name
+
   def to_hash
     { :name => name, :duration => duration, :color => color }
   end
