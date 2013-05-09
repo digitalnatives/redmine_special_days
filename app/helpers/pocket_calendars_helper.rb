@@ -35,12 +35,19 @@ module PocketCalendarsHelper
     next_month = first_day.next_month
     prev_month = first_day.prev_month
 
+    next_year  = first_day.next_year
+    prev_year  = first_day.prev_year
+
     needs_nav = options[:nav_links] && options[:div_id]
-    next_month_link     = month_change_link('>>', calendar, next_month.year, next_month.month, options[:div_id])
-    prev_month_link     = month_change_link('<<', calendar, prev_month.year, prev_month.month, options[:div_id])
+
+    next_month_link = month_change_link('>>', calendar, next_month.year, next_month.month, options[:div_id], I18n.t('redmine_special_days.next_month'))
+    prev_month_link = month_change_link('<<', calendar, prev_month.year, prev_month.month, options[:div_id], I18n.t('redmine_special_days.prev_month'))
+    next_year_link  = month_change_link('>>>', calendar, next_year.year, next_year.month, options[:div_id], I18n.t('redmine_special_days.next_year'))
+    prev_year_link  = month_change_link('<<<', calendar, prev_year.year, prev_year.month, options[:div_id], I18n.t('redmine_special_days.prev_year'))
+
     current_month_link  = month_change_link(I18n.t('redmine_special_days.current_month'), calendar, Date.today.year, Date.today.month, options[:div_id])
 
-    title_colspan = options[:nav_links] ? 5 : 7
+    title_colspan = options[:nav_links] ? 3 : 7
     title = options[:show_year] ? "#{year} #{I18n.t('date.month_names')[month]}" : I18n.t('date.month_names')[month]
 
     day_names  = I18n.t('date.day_names').rotate.zip(I18n.t('date.abbr_day_names').rotate) # monday first
@@ -52,9 +59,11 @@ module PocketCalendarsHelper
     pretty_cal  << %(<table class="pretty_calendar" border="0" cellspacing="0" cellpadding="0">)
     pretty_cal    << %(<thead>)
     pretty_cal      << %(<tr>)
+    pretty_cal        << %(<th colspan="1">#{prev_year_link}</th>) if needs_nav
     pretty_cal        << %(<th colspan="1">#{prev_month_link}</th>) if needs_nav
-    pretty_cal        << %(<th colspan="#{title_colspan}" class="month-name">#{year} #{I18n.t('date.month_names')[month]}</th>)
+    pretty_cal        << %(<th colspan="#{title_colspan}" class="month-name">#{title}</th>)
     pretty_cal        << %(<th colspan="1">#{next_month_link}</th>) if needs_nav
+    pretty_cal        << %(<th colspan="1">#{next_year_link}</th>) if needs_nav
     pretty_cal      << %(<tr>)
     pretty_cal      << %(<tr class="day-names">)
     day_names.each do |dname, abbr_dname|
@@ -83,6 +92,8 @@ module PocketCalendarsHelper
     pretty_cal.html_safe
   end
 
+  private
+
   def pretty_day(date, info, not_in_month=false)
     pretty_day = ""
     pretty_day << %(<td )
@@ -99,7 +110,7 @@ module PocketCalendarsHelper
     pretty_day.html_safe
   end
 
-  def month_change_link(text, calendar, year, month, div_id)
+  def month_change_link(text, calendar, year, month, div_id, title = nil)
     link_to(text,
             Rails.application.routes.url_helpers.change_month_pocket_calendars_path(
               :calendar_id => calendar.id,
@@ -107,7 +118,8 @@ module PocketCalendarsHelper
               :month => month,
               :div_id => div_id),
             :remote => true,
-            :method => :put).html_safe
+            :method => :put,
+            :title => title).html_safe
   end
 
 end

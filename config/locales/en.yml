@@ -5,3 +5,7 @@ en:
     calendars: Calendars
     calendar_overview: Overview
     current_month: current month
+    next_month: next month
+    prev_month: previous month
+    next_year: next year
+    prev_year: previous year
