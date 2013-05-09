@@ -18,8 +18,7 @@ module PocketCalendarsHelper
   end
 
   def pretty_calendar(calendar, year, month, options={})
-    defaults = { :first_day_of_week => 1,
-                 :edit => false,
+    defaults = { :edit => false,
                  :show_today => true,
                  :nav_links => true,
                  :div_id => 'calendar-show',
@@ -126,12 +125,13 @@ module PocketCalendarsHelper
     title = info[:name]
     title << " # #{info[:description]}" unless info[:description].blank?
 
-    pretty_day = ""
-    pretty_day << %(<td )
+    pretty_day  = %(<td )
       pretty_day << %(class = ")
         pretty_day << %(day)
         pretty_day << %( not-in-month) if not_in_month
+        pretty_day << %( today) if date.today?
       pretty_day << %(")
+      # TODO : can this be done with CSS?
       pretty_day << %( style="background-color: #{info[:color]}") unless not_in_month
       pretty_day << %( title="#{title}") unless not_in_month
     pretty_day << %(>)

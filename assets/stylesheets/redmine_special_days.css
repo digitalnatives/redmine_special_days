@@ -47,8 +47,8 @@
   text-align: center;
 }
 
-.weekend {
-  background-color: #FFFFDD;
+.today{
+  border: 3px solid #307769;
 }
 
 .not-in-month {
