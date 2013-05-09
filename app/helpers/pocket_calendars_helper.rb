@@ -29,64 +29,20 @@ module PocketCalendarsHelper
     first_day = Date.civil(year, month, 1)
     last_day  = Date.civil(year, month, -1)
 
-    start_day = first_day.beginning_of_week # monday
-    end_day   = last_day.end_of_week # sunday
-
-    next_month = first_day.next_month
-    prev_month = first_day.prev_month
-
-    next_year  = first_day.next_year
-    prev_year  = first_day.prev_year
-
     needs_nav = options[:nav_links] && options[:div_id]
-
-    next_month_link = month_change_link('>>', calendar, next_month.year, next_month.month, options[:div_id], I18n.t('redmine_special_days.next_month'))
-    prev_month_link = month_change_link('<<', calendar, prev_month.year, prev_month.month, options[:div_id], I18n.t('redmine_special_days.prev_month'))
-    next_year_link  = month_change_link('>>>', calendar, next_year.year, next_year.month, options[:div_id], I18n.t('redmine_special_days.next_year'))
-    prev_year_link  = month_change_link('<<<', calendar, prev_year.year, prev_year.month, options[:div_id], I18n.t('redmine_special_days.prev_year'))
-
-    current_month_link  = month_change_link(I18n.t('redmine_special_days.current_month'), calendar, Date.today.year, Date.today.month, options[:div_id])
-
-    title_colspan = options[:nav_links] ? 3 : 7
-    title = options[:show_year] ? "#{year} #{I18n.t('date.month_names')[month]}" : I18n.t('date.month_names')[month]
-
-    day_names  = I18n.t('date.day_names').rotate.zip(I18n.t('date.abbr_day_names').rotate) # monday first
 
     pretty_cal = ""
 
     pretty_cal << %(<div id="#{options[:div_id]}">) if options[:div_id]
-
     pretty_cal  << %(<table class="pretty_calendar" border="0" cellspacing="0" cellpadding="0">)
     pretty_cal    << %(<thead>)
-    pretty_cal      << %(<tr>)
-    pretty_cal        << %(<th colspan="1">#{prev_year_link}</th>) if needs_nav
-    pretty_cal        << %(<th colspan="1">#{prev_month_link}</th>) if needs_nav
-    pretty_cal        << %(<th colspan="#{title_colspan}" class="month-name">#{title}</th>)
-    pretty_cal        << %(<th colspan="1">#{next_month_link}</th>) if needs_nav
-    pretty_cal        << %(<th colspan="1">#{next_year_link}</th>) if needs_nav
-    pretty_cal      << %(<tr>)
-    pretty_cal      << %(<tr class="day-names">)
-    day_names.each do |dname, abbr_dname|
-      pretty_cal      << "<th scope='col'><abbr title='#{dname}'>#{abbr_dname}</abbr></th>"
-    end
-    pretty_cal      << %(</tr>)
+    pretty_cal      << calendar_title_row(calendar, first_day,
+                                          needs_nav, options[:show_year], options[:div_id])
+    pretty_cal      << calendar_day_names
     pretty_cal    << %(</thead>)
-
-    pretty_cal    << %(<tbody>)
-      calendar.interval(start_day, end_day).to_a.each_slice(7) do |week|
-        pretty_cal  << %(<tr>)
-          week.each do |date, info|
-            date = date.to_date
-            pretty_cal << pretty_day(date, info, (date < first_day || date > last_day))
-          end
-        pretty_cal  << %(</tr>)
-      end
-    pretty_cal    << %(</tbody>)
-
-    pretty_cal    << %(<thead><tr class="cal-footer"><th colspan="7">#{current_month_link}</th></tr></thead>) if needs_nav
-
+    pretty_cal    << calendar_body(calendar, first_day, last_day)
+    pretty_cal    << calendar_footer(calendar, options[:div_id]) if needs_nav
     pretty_cal << %(</table>)
-
     pretty_cal << %(</div>) if options[:div_id]
 
     pretty_cal.html_safe
@@ -94,7 +50,79 @@ module PocketCalendarsHelper
 
   private
 
-  def pretty_day(date, info, not_in_month=false)
+  def calendar_body(calendar, first_day, last_day)
+    start_day = first_day.beginning_of_week # monday
+    end_day   = last_day.end_of_week # sunday
+
+    cal_body     = %(<tbody>)
+      calendar.interval(start_day, end_day).to_a.each_slice(7) do |week|
+        cal_body  << %(<tr>)
+          week.each do |date, info|
+            date = date.to_date
+            cal_body << calendar_day(date, info, (date < first_day || date > last_day))
+          end
+        cal_body  << %(</tr>)
+      end
+    cal_body    << %(</tbody>)
+
+    cal_body.html_safe
+  end
+
+  def calendar_day_names
+    day_names  = I18n.t('date.day_names').rotate.zip(I18n.t('date.abbr_day_names').rotate) # monday first
+
+    dnames    = %(<tr class="day-names">)
+      day_names.each do |dname, abbr_dname|
+        dnames << "<th scope='col'><abbr title='#{dname}'>#{abbr_dname}</abbr></th>"
+      end
+    dnames   << %(</tr>)
+
+    dnames.html_safe
+  end
+
+  def calendar_title_row(calendar, first_day, needs_nav, show_year, div_id)
+    title_colspan = needs_nav ? 3 : 7
+    title = if show_year
+              "#{first_day.year} #{I18n.t('date.month_names')[first_day.month]}"
+            else
+              I18n.t('date.month_names')[month]
+            end
+
+    next_month = first_day.next_month
+    prev_month = first_day.prev_month
+    next_year  = first_day.next_year
+    prev_year  = first_day.prev_year
+
+    next_month_link = month_change_link('>>', calendar, next_month.year, next_month.month,
+                                        div_id, I18n.t('redmine_special_days.next_month'))
+    prev_month_link = month_change_link('<<', calendar, prev_month.year, prev_month.month,
+                                        div_id, I18n.t('redmine_special_days.prev_month'))
+    next_year_link  = month_change_link('>>>', calendar, next_year.year, next_year.month,
+                                        div_id, I18n.t('redmine_special_days.next_year'))
+    prev_year_link  = month_change_link('<<<', calendar, prev_year.year, prev_year.month,
+                                        div_id, I18n.t('redmine_special_days.prev_year'))
+
+    title_row  = %(<tr>)
+    title_row   << %(<th colspan="1">#{prev_year_link}</th>) if needs_nav
+    title_row   << %(<th colspan="1">#{prev_month_link}</th>) if needs_nav
+    title_row   << %(<th colspan="#{title_colspan}" class="month-name">#{title}</th>)
+    title_row   << %(<th colspan="1">#{next_month_link}</th>) if needs_nav
+    title_row   << %(<th colspan="1">#{next_year_link}</th>) if needs_nav
+    title_row << %(<tr>)
+
+    title_row.html_safe
+  end
+
+  def calendar_footer(calendar, div_id)
+    current_month_link  = month_change_link(I18n.t('redmine_special_days.current_month'),
+                                            calendar,
+                                            Date.today.year, Date.today.month,
+                                            div_id)
+
+    %(<thead><tr class="cal-footer"><th colspan="7">#{current_month_link}</th></tr></thead>).html_safe
+  end
+
+  def calendar_day(date, info, not_in_month=false)
     pretty_day = ""
     pretty_day << %(<td )
       pretty_day << %(class = ")
