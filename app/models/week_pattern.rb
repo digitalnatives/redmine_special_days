@@ -18,6 +18,10 @@ class WeekPattern < ActiveRecord::Base
 
   DAYS = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"].freeze
 
+  def self.for_select
+    WeekPattern.all.map{ |wp| [wp.name, wp.id] }
+  end
+
   def day_types
     dt_ids = days.values.uniq
     dts = DayType.find(dt_ids).inject({}){ |hsh, dt| hsh.tap{ |h| h[dt.id.to_s] = dt.to_hash} }

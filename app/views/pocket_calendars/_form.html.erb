@@ -1,0 +1,6 @@
+<div class="box tabular">
+  <p><%= f.text_field :name, :required => true, :label => l('redmine_special_days.pocket_calendar.name') %></p>
+  <p><%= f.select :week_pattern_id, WeekPattern.for_select,
+                  :required => true,
+                  :label => l('redmine_special_days.pocket_calendar.week_pattern')%></p>
+</div>

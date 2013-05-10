@@ -4,12 +4,13 @@ en:
     menu_title: Special days
     calendars: Calendars
     calendar_overview: Overview
+    pocket_calendar_overview: Special days
     current_month: current month
     next_month: next month
     prev_month: previous month
     next_year: next year
     prev_year: previous year
-    new_calendar: New calendar
+    new_pocket_calendar: New calendar
     new_day_type: New day type
     edit_day_type: Edit day type
     new_week_pattern: New week pattern
@@ -25,3 +26,6 @@ en:
     week_pattern:
       name: name
       days: pattern
+    pocket_calendar:
+      name: name
+      week_pattern: week pattern
