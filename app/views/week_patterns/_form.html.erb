@@ -1,0 +1,8 @@
+<div class="box tabular">
+  <p><%= f.text_field :name, :required => true, :label => l('redmine_special_days.week_pattern.name') %></p>
+  <% WeekPattern::DAYS.rotate.each_with_index do |day, index| %>
+    <p><%= f.select day, DayType.for_select,
+                       :required => true,
+                       :label => l('date.day_names').rotate[index] %></p>
+  <% end %>
+</div>

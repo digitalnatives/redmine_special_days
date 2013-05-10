@@ -14,9 +14,14 @@ en:
     edit_day_type: Edit day type
     new_week_pattern: New week pattern
     week_patterns: Week patterns
+    edit_week_pattern: Edit week pattern
     day_types: Day types
+    week_patterns: Week patterns
     hours: hours
     day_type:
       name: name
       color: color
       duration: duration
+    week_pattern:
+      name: name
+      days: pattern

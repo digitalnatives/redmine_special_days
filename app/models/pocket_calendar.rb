@@ -17,7 +17,7 @@ class PocketCalendar < ActiveRecord::Base
   validates_uniqueness_of :name
 
   def day_types
-    @day_types ||= compute_day_types
+    @day_types ||= week_pattern.day_types
   end
 
   def mundane_day(day)
@@ -41,13 +41,6 @@ class PocketCalendar < ActiveRecord::Base
 
   def special_days_grouped_by_year
     special_days.order("date DESC").group_by{ |sd| sd.date.year.to_s }
-  end
-
-  private
-  def compute_day_types
-    dt_ids = week_pattern.days.values.uniq
-    dts = DayType.find(dt_ids).inject({}){ |hsh, dt| hsh.tap{ |h| h[dt.id.to_s] = dt.to_hash} }
-    week_pattern.days.map{ |wday, dt_id| { wday => dts[dt_id.to_s] } }.reduce(:merge)
   end
 
 end

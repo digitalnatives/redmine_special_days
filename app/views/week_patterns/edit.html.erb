@@ -1,0 +1,6 @@
+<h2><%= l('redmine_special_days.edit_week_pattern') %></h2>
+
+<%= labelled_form_for @week_pattern do |f| %>
+  <%= render 'form', :f => f %>
+  <%= submit_tag l(:button_update) %>
+<% end %>

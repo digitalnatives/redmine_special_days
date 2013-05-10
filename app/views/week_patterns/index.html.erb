@@ -1,0 +1,29 @@
+<%= content_for :sidebar do %>
+  <h3><%= link_to l('redmine_special_days.new_week_pattern'), {:action => 'new'}, :class => 'icon icon-add' %></h3>
+<% end %>
+
+<h2><%= l('redmine_special_days.week_patterns') %></h2>
+
+<table class="list">
+  <thead>
+    <tr>
+      <th><%= l('redmine_special_days.week_pattern.name')%></th>
+      <th><%= l('redmine_special_days.week_pattern.days')%></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @week_patterns.each do |week_pattern| %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td><%= week_pattern.name %></td>
+        <td align="center"><%= human_day_types(week_pattern) %></td>
+        <td class="buttons">
+          <%= link_to l('button_edit'), edit_week_pattern_path(week_pattern), :class => 'icon icon-edit' %>
+          <%= link_to l('button_delete'), week_pattern_path(week_pattern), :class => 'icon icon-delete',
+                                        :method => :delete,
+                                        :confirm => l(:text_are_you_sure) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
