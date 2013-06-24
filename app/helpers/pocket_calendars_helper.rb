@@ -24,6 +24,7 @@ module PocketCalendarsHelper
   end
 
   def pretty_calendar(calendar, year, month, options={})
+    options ||= {}
     defaults = { :edit => false,
                  :show_today => true,
                  :nav_links => true,
@@ -51,6 +52,27 @@ module PocketCalendarsHelper
     pretty_cal << %(</div>) if options[:div_id]
 
     pretty_cal.html_safe
+  end
+
+  def yearly_calendar(calendar, year)
+    yearly_cal = ""
+
+    (1..12).each do |mon|
+      yearly_cal << %(<div class="calendar-year-months">) if mon%2 == 1
+
+        yearly_cal << %(<div class="calendar-year-month">)
+          yearly_cal << pretty_calendar(calendar, year, mon, :edit => true,
+                                                             :nav_links => false,
+                                                             :show_year => false)
+        yearly_cal << %(</div>)
+
+      if mon%2 == 0
+        yearly_cal << %(</div>)
+        yearly_cal << %(<div style="clear:both;"></div>)
+      end
+    end
+
+    yearly_cal.html_safe
   end
 
   private
@@ -90,7 +112,8 @@ module PocketCalendarsHelper
     title = if show_year
               "#{first_day.year} #{I18n.t('date.month_names')[first_day.month]}"
             else
-              I18n.t('date.month_names')[month]
+              logger.debug "#!!!!!!!!!!!!!!!!!{first_day}!!!!!!!!!!!!!!!!!!!!"
+              I18n.t('date.month_names')[first_day.month]
             end
 
     next_month = first_day.next_month

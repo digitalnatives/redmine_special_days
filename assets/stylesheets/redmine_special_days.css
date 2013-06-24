@@ -60,31 +60,13 @@
   background-color: #F2F2F2;
 }
 
-/*
-.day, .specialDay {
-  text-align: center;
-  border-bottom: 1px dotted #bbbbbb;
-  background-color: #bbccff;
-}
-.specialDay {
-  background-color: #003355;
-  color: white;
-}
-.specialDay a:visited, .specialDay a{
- color: #8B0000;
- text-decoration: none;
-}
-.specialDay a:hover {
-  color: white;
-  text-decoration: none;
-  background-color: #00300;
+.calendar-year-months {
+  width: 670px;
+  margin: 10px;
+  padding-top: 25px;
 }
 
-.specialDay a:hover {
-  color: white;
-  background-color: black;
+.calendar-year-month {
+  width: 310px;
+  float: left;
 }
-.today{
-  background-color: #4682b4;
-}
-*/

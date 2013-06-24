@@ -3,4 +3,6 @@
 <% end %>
 
 <%= render_tabs [{:name => 'overview', :partial => 'overview',
-                  :label => 'redmine_special_days.calendar_overview'}] %>
+                  :label => 'redmine_special_days.calendar_overview'},
+                 {:name => 'manage_special_days', :partial => 'manage_special_days',
+                  :label => 'redmine_special_days.manage_special_days'}] %>
