@@ -1,6 +1,12 @@
 require 'date'
+include WeekPatternsHelper
 
 module PocketCalendarsHelper
+
+  def week_pattern_overview(calendar)
+    human_day_types(calendar.week_pattern).html_safe
+  end
+
   def special_days_overview(calendar)
     overview = ""
     overview      << %(<ul>)

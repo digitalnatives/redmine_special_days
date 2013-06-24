@@ -5,7 +5,7 @@ module WeekPatternsHelper
 
     dt_html = []
 
-    week_pattern.day_types.map do |wday, info|
+    week_pattern.day_types.sort.map do |wday, info|
       dt_html << "#{day_names[wday.to_i]} : #{info[:name]}"
     end
 

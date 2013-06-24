@@ -1,7 +1,8 @@
 <div class="splitcontentleft">
   <div class="issues box">
-    <%= l('redmine_special_days.pocket_calendar_overview') %> :
-    <br/>
+    <strong><%= l('redmine_special_days.pocket_calendar_week_pattern_overview') %> :</strong> <br/>
+    <%= week_pattern_overview @pocket_calendar %> <br/> <br/>
+    <strong><%= l('redmine_special_days.pocket_calendar_special_days_overview') %> :</strong> <br/>
     <%= special_days_overview @pocket_calendar %>
   </div>
 </div>

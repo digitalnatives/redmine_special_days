@@ -4,7 +4,8 @@ en:
     menu_title: Special days
     calendars: Calendars
     calendar_overview: Overview
-    pocket_calendar_overview: Special days
+    pocket_calendar_special_days_overview: Special days
+    pocket_calendar_week_pattern_overview: Week pattern
     current_month: current month
     next_month: next month
     prev_month: previous month
