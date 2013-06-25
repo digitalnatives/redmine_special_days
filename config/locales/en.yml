@@ -21,6 +21,10 @@ en:
     day_types: Day types
     week_patterns: Week patterns
     hours: hours
+    special_day:
+      description: description
+      date: date
+      day_type : day type
     day_type:
       name: name
       color: color
@@ -28,6 +32,8 @@ en:
     week_pattern:
       name: name
       days: pattern
+      one: Week pattern
+      many: Week patterns
     pocket_calendar:
       name: name
       week_pattern: week pattern

@@ -70,3 +70,24 @@
   width: 310px;
   float: left;
 }
+
+td.special-day-date {
+  width: 70px;
+}
+
+td.special-day-date input {
+  width: 70px;
+}
+
+td.special-day-description {
+}
+
+td.special-day-day-type {
+}
+
+td.special-day-destroy {
+}
+
+table#special-days-table {
+  width: 90%;
+}

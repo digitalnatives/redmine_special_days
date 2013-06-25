@@ -1,17 +1,36 @@
 <%= form_for calendar, :remote => true do |calendar_form| %>
-  <%= calendar_form.fields_for :special_days do |special_days_form| %>
-    <p>
-      <%= special_days_form.label :date %>
-      <%= special_days_form.text_field :date %>
-      <%= special_days_form.label :description %>
-      <%= special_days_form.text_field :description %>
+  <%= calendar_form.label l('redmine_special_days.week_pattern.one') %>
+  <%= calendar_form.collection_select :week_pattern_id, WeekPattern.all, :id, :name %>
 
-      <% unless special_days_form.object.new_record? %>
-        <%= special_days_form.check_box '_destroy' %>
-        <%= special_days_form.label '_destroy', 'Remove' %>
-      <% end %>
-    </p>
+  <hr />
+
+  <table id="special-days-table">
+    <tr>
+      <th> <%= l('redmine_special_days.special_day.date') %> </th>
+      <th> <%= l('redmine_special_days.special_day.description') %> </th>
+      <th> <%= l('redmine_special_days.special_day.day_type') %> </th>
+      <th></th>
+    </tr>
+  <%= calendar_form.fields_for :special_days do |special_days_form| %>
+    <tr>
+      <td class="special-day-date">
+        <%= special_days_form.text_field :date %>
+      </td>
+      <td class="special-day-description">
+        <%= special_days_form.text_field :description %>
+      </td>
+      <td "special-day-day-type">
+        <%= special_days_form.collection_select :day_type_id, DayType.all, :id, :name %>
+      </td>
+
+      <td "special-day-destroy">
+        <% unless special_days_form.object.new_record? %>
+          <%= special_days_form.check_box '_destroy' %>
+        <% end %>
+      </td>
+    </tr>
   <% end %>
+  </table>
 
   <%= submit_tag %>
 <% end %>
