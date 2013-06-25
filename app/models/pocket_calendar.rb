@@ -11,7 +11,7 @@ class PocketCalendar < ActiveRecord::Base
   unloadable
 
   belongs_to :week_pattern
-  has_many :special_days
+  has_many :special_days, :order => 'date DESC'
 
   validates_presence_of   :name, :week_pattern_id
   validates_uniqueness_of :name
@@ -42,7 +42,7 @@ class PocketCalendar < ActiveRecord::Base
   end
 
   def special_days_grouped_by_year
-    special_days.order("date DESC").group_by{ |sd| sd.date.year.to_s }
+    special_days.group_by{ |sd| sd.date.year.to_s }
   end
 
 end
