@@ -30,8 +30,13 @@ class PocketCalendarsController < ApplicationController
     @pocket_calendar.attributes = params[:pocket_calendar]
 
     if @pocket_calendar.save
-      flash[:notice] = l(:notice_successful_update)
-      redirect_to pocket_calendars_path
+      respond_to do |format|
+        format.js
+        format.html do
+          flash[:notice] = l(:notice_successful_update)
+          redirect_to pocket_calendars_path
+        end
+      end
     else
       render :action => 'edit'
     end

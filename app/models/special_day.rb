@@ -18,7 +18,7 @@ class SpecialDay < ActiveRecord::Base
   validates_presence_of   :pocket_calendar_id, :day_type_id, :date
 
   # TODO : is this a good idea?
-  # validates_uniqueness_of :date, :scope => :pocket_calendar_id
+  validates_uniqueness_of :date, :scope => :pocket_calendar_id
 
   def to_hash
     day_type.to_hash.merge :description => description

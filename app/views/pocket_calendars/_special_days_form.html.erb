@@ -1,0 +1,17 @@
+<%= form_for calendar, :remote => true do |calendar_form| %>
+  <%= calendar_form.fields_for :special_days do |special_days_form| %>
+    <p>
+      <%= special_days_form.label :date %>
+      <%= special_days_form.text_field :date %>
+      <%= special_days_form.label :description %>
+      <%= special_days_form.text_field :description %>
+
+      <% unless special_days_form.object.new_record? %>
+        <%= special_days_form.check_box '_destroy' %>
+        <%= special_days_form.label '_destroy', 'Remove' %>
+      <% end %>
+    </p>
+  <% end %>
+
+  <%= submit_tag %>
+<% end %>

@@ -16,6 +16,8 @@ class PocketCalendar < ActiveRecord::Base
   validates_presence_of   :name, :week_pattern_id
   validates_uniqueness_of :name
 
+  accepts_nested_attributes_for :special_days, :allow_destroy => true
+
   def day_types
     @day_types ||= week_pattern.day_types
   end

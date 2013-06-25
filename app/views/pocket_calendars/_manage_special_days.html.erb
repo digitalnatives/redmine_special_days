@@ -1,14 +1,18 @@
 <div class="splitcontentleft">
   <div class="issues box">
-
+    <div id="special-days-form">
+      <%= render 'special_days_form', :calendar => @pocket_calendar %>
+    </div>
   </div>
 </div>
 
 <div class="splitcontentright">
   <div class="issues box">
-    <%= render 'pretty_calendar_month', :calendar => @pocket_calendar,
-                                        :year => Date.today.year,
-                                        :month => Date.today.month,
-                                        :options => {:div_id => 'special-days-manager'} %>
+    <div id="special-days-edit-cal">
+      <%= render 'pretty_calendar_month', :calendar => @pocket_calendar,
+                                          :year => Date.today.year,
+                                          :month => Date.today.month,
+                                          :options => {:div_id => 'special-days-manager', :needs_nav => false} %>
+    </div>
   </div>
 </div>

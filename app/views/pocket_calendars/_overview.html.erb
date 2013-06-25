@@ -1,15 +1,16 @@
 <div class="splitcontentleft">
   <div class="issues box">
-    <strong><%= l('redmine_special_days.pocket_calendar_week_pattern_overview') %> :</strong> <br/>
-    <%= week_pattern_overview @pocket_calendar %> <br/> <br/>
-    <strong><%= l('redmine_special_days.pocket_calendar_special_days_overview') %> :</strong> <br/>
-    <%= special_days_overview @pocket_calendar %>
+    <div id="cal-overview">
+      <%= render 'cal_overview', :calendar => @pocket_calendar %>
+    </div>
   </div>
 </div>
 
 <div class="splitcontentright">
   <div class="issues box">
-    <%= render 'pretty_calendar_year',  :calendar => @pocket_calendar,
-                                        :year => Date.today.year %>
+    <div id="yearly-cal">
+      <%= render 'pretty_calendar_year',  :calendar => @pocket_calendar,
+                                          :year => Date.today.year %>
+    </div>
   </div>
 </div>

@@ -1,0 +1,10 @@
+$('#cal-overview').html("<%= j(render 'cal_overview', :calendar => @pocket_calendar) %>");
+$('#special-days-form').html("<%= j(render 'special_days_form', :calendar => @pocket_calendar) %>");
+$('#yearly-cal').html("<%= j(render 'pretty_calendar_year',  :calendar => @pocket_calendar,
+                                                            :year => Date.today.year) %>");
+$('#special-days-edit-cal').html("<%= j(render 'pretty_calendar_month',  :calendar => @pocket_calendar,
+                                                                        :year => Date.today.year,
+                                                                        :month => Date.today.month,
+                                                                        :options => {
+                                                                          :div_id => 'special-days-manager',
+                                                                          :needs_nav => false}) %>");
