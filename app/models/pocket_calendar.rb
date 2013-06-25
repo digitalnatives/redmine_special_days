@@ -32,6 +32,9 @@ class PocketCalendar < ActiveRecord::Base
   end
 
   def interval(from, to)
+    from = from.to_date
+    to  = to.to_date
+
     spec = special_days.find_all_by_date(from..to).inject({}) do |hsh, sd|
       hsh.tap{ |h| h[sd.date.to_s] = sd.to_hash }
     end
