@@ -112,7 +112,6 @@ module PocketCalendarsHelper
     title = if show_year
               "#{first_day.year} #{I18n.t('date.month_names')[first_day.month]}"
             else
-              logger.debug "#!!!!!!!!!!!!!!!!!{first_day}!!!!!!!!!!!!!!!!!!!!"
               I18n.t('date.month_names')[first_day.month]
             end
 
