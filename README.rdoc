@@ -1,3 +1,0 @@
-= redmine_special_days
-
-Description goes here
