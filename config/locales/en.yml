@@ -21,7 +21,9 @@ en:
     day_types: Day types
     week_patterns: Week patterns
     hours: hours
+    click_to_create: Click to create a new special day!
     special_day:
+      destroy: destroy
       description: description
       date: date
       day_type : day type

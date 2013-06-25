@@ -3,6 +3,7 @@
 
 resources :pocket_calendars do
   collection do
+    put 'manage_special_day'
     put 'change_month'
   end
 end

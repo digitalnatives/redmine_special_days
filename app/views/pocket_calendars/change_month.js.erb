@@ -2,4 +2,4 @@ $('#<%= @div_id %>').replaceWith('<%= escape_javascript(render "pretty_calendar_
                                                             :calendar => @calendar,
                                                             :year => @year,
                                                             :month => @month,
-                                                            :options => { :div_id => @div_id })%>')
+                                                            :options => { :div_id => @div_id, :edit => @edit })%>')

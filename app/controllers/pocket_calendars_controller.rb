@@ -51,6 +51,19 @@ class PocketCalendarsController < ApplicationController
     @year     = params[:year].to_i
     @month    = params[:month].to_i
     @div_id   = params[:div_id]
+    @edit     = params[:edit]
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def manage_special_day
+    @calendar = PocketCalendar.find(params['calendar_id'].to_i)
+    @date = params['date']
+    @special_day = @calendar.special_days.find_by_date(@date)
+
+    @special_day ||= @calendar.special_days.build(:date => @date)
 
     respond_to do |format|
       format.js

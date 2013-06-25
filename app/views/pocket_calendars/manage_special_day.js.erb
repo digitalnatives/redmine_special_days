@@ -1,0 +1,5 @@
+$('#special-days-form').html("<%= j(render 'special_days_form', :calendar => @calendar) %>");
+
+// <% unless @special_day %>
+//   $('#special-days-table').append("<%= j(new_special_day_form(@calendar, @date)) %>");
+// <% end %>

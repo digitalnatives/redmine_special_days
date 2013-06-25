@@ -7,4 +7,6 @@ $('#special-days-edit-cal').html("<%= j(render 'pretty_calendar_month',  :calend
                                                                         :month => Date.today.month,
                                                                         :options => {
                                                                           :div_id => 'special-days-manager',
-                                                                          :needs_nav => false}) %>");
+                                                                          :needs_nav => false,
+                                                                          :edit => true
+                                                                        }) %>");
