@@ -1,6 +1,7 @@
 # English strings go here for Rails i18n
 en:
   redmine_special_days:
+    default_calendar_name: Default calendar name
     menu_title: Special days
     calendars: Calendars
     calendar_overview: Overview
