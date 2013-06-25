@@ -1,0 +1,5 @@
+api.data do
+  api.interval @interval
+  api.from @from
+  api.to @to
+end

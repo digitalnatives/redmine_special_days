@@ -1,7 +1,7 @@
 Redmine::Plugin.register :redmine_special_days do
   name 'Redmine SpecialDays plugin'
   author 'LuckyThirteen'
-  description 'This s redmine plugin to handle special days like weekends, holidays etc.'
+  description 'This is a redmine plugin to handle special days like weekends, holidays etc.'
   version '0.0.1'
   #url ''
 
@@ -10,5 +10,4 @@ Redmine::Plugin.register :redmine_special_days do
        :if => Proc.new { User.current.admin } }
 
   settings :default => {'default_calendar_name' => 'Global'}, :partial => 'settings/redmine_special_days_settings'
-
 end

@@ -28,7 +28,7 @@ class PocketCalendar < ActiveRecord::Base
 
   def day(date)
     spec = special_days.find_by_date(date)
-    spec ? spec.to_hash : mundane_day(day)
+    spec ? spec.to_hash : mundane_day(date)
   end
 
   def interval(from, to)

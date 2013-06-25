@@ -1,0 +1,4 @@
+api.data do
+  api.day @day
+  api.date @date
+end
