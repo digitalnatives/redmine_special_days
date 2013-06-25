@@ -94,27 +94,6 @@ module PocketCalendarsHelper
     spec_form.html_safe
   end
 
-#   <tr>
-#       <td class="special-day-date">
-#         <input id="pocket_calendar_special_days_attributes_3_date" name="pocket_calendar[special_days_attributes][3][date]" size="30" type="text" value="2013-05-13" />
-#       </td>
-#       <td class="special-day-description">
-#         <input id="pocket_calendar_special_days_attributes_3_description" name="pocket_calendar[special_days_attributes][3][description]" size="30" type="text" value="csere munkanap" />
-#       </td>
-#       <td "special-day-day-type">
-#         <select id="pocket_calendar_special_days_attributes_3_day_type_id" name="pocket_calendar[special_days_attributes][3][day_type_id]"><option value="1" selected="selected">Working day</option>
-# <option value="2">Half day</option>
-# <option value="3">Holiday</option>
-# <option value="4">Weekend</option>
-# <option value="6">Munka ünnepe</option></select>
-#       </td>
-
-#       <td "special-day-destroy">
-#           <input name="pocket_calendar[special_days_attributes][3][_destroy]" type="hidden" value="0" /><input id="pocket_calendar_special_days_attributes_3__destroy" name="pocket_calendar[special_days_attributes][3][_destroy]" type="checkbox" value="1" />
-#       </td>
-#     </tr>
-
-
   private
 
   def calendar_body(calendar, first_day, last_day, edit=false)
