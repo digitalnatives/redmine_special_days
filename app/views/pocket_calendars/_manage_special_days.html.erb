@@ -8,6 +8,7 @@
   <div class="issues box">
     <%= render 'pretty_calendar_month', :calendar => @pocket_calendar,
                                         :year => Date.today.year,
-                                        :month => Date.today.month %>
+                                        :month => Date.today.month,
+                                        :options => {:div_id => 'special-days-manager'} %>
   </div>
 </div>

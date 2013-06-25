@@ -39,7 +39,7 @@ module PocketCalendarsHelper
 
     pretty_cal = ""
 
-    pretty_cal << %(<div id="#{options[:div_id]}">) if options[:div_id]
+    pretty_cal << %(<div id="#{options[:div_id]}">)
     pretty_cal  << %(<table class="pretty_calendar" border="0" cellspacing="0" cellpadding="0">)
     pretty_cal    << %(<thead>)
     pretty_cal      << calendar_title_row(calendar, first_day,
@@ -49,7 +49,7 @@ module PocketCalendarsHelper
     pretty_cal    << calendar_body(calendar, first_day, last_day)
     pretty_cal    << calendar_footer(calendar, options[:div_id]) if needs_nav
     pretty_cal << %(</table>)
-    pretty_cal << %(</div>) if options[:div_id]
+    pretty_cal << %(</div>)
 
     pretty_cal.html_safe
   end
