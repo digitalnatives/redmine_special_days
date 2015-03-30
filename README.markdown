@@ -1,3 +1,7 @@
+# Deprecation notice
+
+This repository is not maintained.
+
 # Redmine SpecialDays Plugin
 
 Redmine SpecialDays is a plugin to help you track special days like weekends, holidays, etc..
